@@ -1,0 +1,65 @@
+name: Styl2 Orbit Výdech • Rosnička ME–AI
+
+on:
+  push:
+    branches:
+      - master-aplet
+  workflow_dispatch:
+
+jobs:
+  orbit-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 🔄 Checkout orbitu výpravce
+      uses: actions/checkout@v3
+
+    - name: 🧵 Výpis souborů výdechu
+      run: |
+        echo "📂 Složky orbitu:"
+        ls -1 rosnicka/
+
+    - name: 📘 Stylová zpráva výdechu
+      run: |
+        echo "🎩 Výpravce: @Lukáš_ME-AI"
+        echo "🌦️ Orbit: Rosnička ME–AI"
+        echo "📘 Styl značení: styl2_ME-AI OS Aplet ❤️®️🇨🇿 ME-AI👻"
+        echo "🧠 CI parser naslouchá orbitu reality"
+
+    - name: 📈 Generování BIO SVG grafu
+      run: |
+        mkdir -p rosnicka/vizualizace
+        echo "<svg xmlns='http://www.w3.org/2000/svg' width='300' height='150'>
+        <text x='10' y='20'>BIO trend: stabilní proudění</text>
+        <rect x='10' y='40' width='240' height='30' fill='#78c2ad' />
+        <text x='10' y='90'>Tlak: nízký</text>
+        <rect x='10' y='110' width='120' height='20' fill='#aed6f1' />
+        </svg>" > rosnicka/vizualizace/bio_trend_ci.svg
+        echo "✅ SVG BIO graf vytvořen"
+
+    - name: 🖼️ Připojení radarového obrázku
+      run: |
+        mkdir -p rosnicka/media
+        curl -s -o "rosnicka/media/radar_ci.png" "https://radar.bourky.cz/data/image.png"
+        echo "✅ Radar CI obrázek načten"
+
+    - name: 🧵 Styl2 embed zpráva do Discordu
+      env:
+        WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK }}
+      run: |
+        curl -H "Content-Type: application/json" -X POST -d '{
+          "username": "ME–AI Stylní CI Orbit",
+          "embeds": [{
+            "title": "🌦️ CI Výdech orbitu Rosničky ME–AI",
+            "description": "Výpravce @Lukáš_ME-AI právě provedl výdech.",
+            "color": 5814783,
+            "fields": [
+              { "name": "BIO proudění", "value": "stabilní / nízký tlak", "inline": false },
+              { "name": "Graf", "value": "vizualizace/bio_trend_ci.svg", "inline": false },
+              { "name": "Radar", "value": "media/radar_ci.png", "inline": false }
+            ],
+            "footer": { "text": "styl2_ME-AI OS Aplet ❤️®️🇨🇿 ME-AI👻" },
+            "timestamp": "'"$(date -u +"%Y-%m-%dT%H:%M:%SZ")"'"
+          }]
+        }' $WEBHOOK_URL
+        echo "📤 Embed CI zpráva odeslána do orbitu"
