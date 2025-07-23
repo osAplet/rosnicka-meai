@@ -3,7 +3,7 @@ name: Styl2 Orbit Výdech • Rosnička ME–AI
 on:
   push:
     branches: 
-      - master-aplet
+      - styl2
  workflow_dispatch:  #Tohle přidá ručnî spuštěnî#
 
 jobs:
