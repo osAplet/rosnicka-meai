@@ -5,6 +5,7 @@ on:
     branches:
       - master-aplet
  workflow_dispatch:  #Tohle přidá ručnî spuštěnî 
+
 jobs:
   orbit-ci:
     runs-on: ubuntu-latest
@@ -61,4 +62,5 @@ jobs:
             "timestamp": "'"$(date -u +"%Y-%m-%dT%H:%M:%SZ")"'"
           }]
         }' $WEBHOOK_URL="https://discord.com/api/webhooks/1397524420615999599/-BXrLhqIzjrBXV6xM2POmfsj_WIW5m8loUYZsEYejhvG1eb1ikb1SepnnFXhwdSD4hbw"
+        }' $WEBHOOK_URL
         echo "📤 Embed CI zpráva odeslána do orbitu"
