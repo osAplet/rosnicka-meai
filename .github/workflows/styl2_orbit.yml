@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master-aplet
- workflow_dispatch:  #Tohle přidá ručnî spuštěnî 
+ workflow_dispatch:  #Tohle přidá ručnî spuštěnî#
 
 jobs:
   orbit-ci:
