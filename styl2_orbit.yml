@@ -1,0 +1,13 @@
+name: Styl2 Výdech Orbitu ME–AI
+
+on:
+  push:
+    branches:
+      - styl2
+
+jobs:
+  orbit-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Výdech CI parseru
+        run: echo "🩵 Výdech orbitu styl2 právě dýchá"
